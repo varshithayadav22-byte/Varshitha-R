@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Portfolio</title>
+
+<style>
+
+/* ===== Animated Gradient Background ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1f1c2c);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+    color: white;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* ===== Center Layout ===== */
+.container {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+/* ===== Glass Card ===== */
+.card {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 30px;
+    width: 80%;
+    max-width: 500px;
+    margin: 20px auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+/* ===== Button ===== */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin-top: 15px;
+    background: linear-gradient(45deg, #00f5a0, #00d9f5);
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #ff00cc, #3333ff);
+    color: white;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:600px){
+    .card {
+        width: 95%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Welcome to My Creative Space</h1>
+    <p>Innovative • Modern • Unique</p>
+
+    <div class="card">
+        <h2>About Me</h2>
+        <p>I build modern websites with smooth animations and creative designs.</p>
+        <a href="#" class="btn">Explore</a>
+    </div>
+
+    <div class="card">
+        <h2>My Vision</h2>
+        <p>Designing experiences that feel futuristic and immersive.</p>
+        <a href="#" class="btn">View Projects</a>
+    </div>
+</div>
+
+<footer>
+    © 2026 | Designed with Creativity ✨
+</footer>
+
+</body>
+</html>
