@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varshitha| Software Developer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:#f1f5f9;
+    scroll-behavior:smooth;
+}
+
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    padding:20px 10%;
+    background:#0f172a;
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:1000;
+}
+
+nav h2{
+    color:#38bdf8;
+}
+
+nav a{
+    color:#f1f5f9;
+    text-decoration:none;
+    margin-left:20px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+
+.hero{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    flex-direction:column;
+    padding:0 20px;
+}
+
+.hero h1{
+    font-size:48px;
+}
+
+.hero span{
+    color:#38bdf8;
+}
+
+.hero p{
+    margin-top:20px;
+    max-width:600px;
+    opacity:0.8;
+}
+
+.btn{
+    margin-top:30px;
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#38bdf8;
+    color:#0f172a;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#0ea5e9;
+}
+
+.section{
+    padding:100px 10%;
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+
+.skill{
+    margin:15px 0;
+}
+
+.progress{
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress div{
+    height:10px;
+    background:#38bdf8;
+    width:0;
+    transition:2s;
+}
+
+
+.projects{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.card{
+    background:#1e293b;
+    padding:30px;
+    border-radius:15px;
+    width:300px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#1e293b;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>varshitha</h2>
+<div>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="1234567890">Contact</a>
+</div>
+</nav>
+
+<section class="hero">
+<h1>Hi, I'm <span>varshitha</span></h1>
+<p>A results-driven developer focused on building scalable and user-friendly applications.</p>
+<button class="btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+View My Work
+</button>
+</section>
+
+<section class="section" id="about">
+<h2>About Me</h2>
+<p style="text-align:center;max-width:700px;margin:auto;">
+I specialize in building high-performance web applications with clean code and strong problem-solving skills.
+Passionate about continuous learning and delivering measurable impact.
+</p>
+</section>
+
+<section class="section" id="skills">
+<h2>Technical Skills</h2>
+
+<div class="skill">
+<p>HTML & CSS</p>
+<div class="progress"><div style="width:90%"></div></div>
+</div>
+
+<div class="skill">
+<p>JavaScript</p>
+<div class="progress"><div style="width:85%"></div></div>
+</div>
+
+<div class="skill">
+<p>React</p>
+<div class="progress"><div style="width:80%"></div></div>
+</div>
+
+<div class="skill">
+<p>Backend Development</p>
+<div class="progress"><div style="width:75%"></div></div>
+</div>
+
+</section>
+
+<section class="section" id="projects">
+<h2>Featured Projects</h2>
+<div class="projects">
+
+<div class="card">
+<h3>Project One</h3>
+<p>Full-stack web app with authentication and REST APIs.</p>
+</div>
+
+<div class="card">
+<h3>Project Two</h3>
+<p>Responsive UI dashboard with real-time data visualization.</p>
+</div>
+
+<div class="card">
+<h3>Project Three</h3>
+<p>Automation tool that improved workflow efficiency by 30%.</p>
+</div>
+
+</div>
+</section>
+
+<section class="section" id="contact">
+<h2>1234567890</h2>
+<p style="text-align:center;">Email: varsh@email.com</p>
+</section>
+
+<footer>
+© 2026 varshitha | Software Developer
+</footer>
+
+<script>
+
+window.addEventListener("scroll", ()=>{
+document.querySelectorAll(".section").forEach(sec=>{
+if(sec.getBoundingClientRect().top < window.innerHeight/1.2){
+sec.classList.add("show");
+}
+});
+});
+</script>
+
+</body>
+</html>
