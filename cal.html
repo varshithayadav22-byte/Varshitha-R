@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grade Calculator</title>
+
+    <style>
+        body {
+            background-color: #e6f2ff; 
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: #ffffff; 
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h2 {
+            text-align: center;
+            color: #003366;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d9f2d9; 
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Grade Calculator</h2>
+
+    <form onsubmit="calculateGrade(); return false;">
+        <label>Student Name:</label>
+        <input type="text" id="studentName" required>
+
+        <label>Subject 1 Marks:</label>
+        <input type="number" id="mark1" max="100" required>
+
+        <label>Subject 2 Marks:</label>
+        <input type="number" id="mark2" max="100" required>
+
+        <label>Subject 3 Marks:</label>
+        <input type="number" id="mark3" max="100" required>
+
+        <label>Subject 4 Marks:</label>
+        <input type="number" id="mark4" max="100" required>
+
+        <label>Subject 5 Marks:</label>
+        <input type="number" id="mark5" max="100" required>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+    function calculateGrade() {
+
+        var name = document.getElementById("studentName").value;
+
+        var m1 = parseFloat(document.getElementById("mark1").value);
+        var m2 = parseFloat(document.getElementById("mark2").value);
+        var m3 = parseFloat(document.getElementById("mark3").value);
+        var m4 = parseFloat(document.getElementById("mark4").value);
+        var m5 = parseFloat(document.getElementById("mark5").value);
+
+        var total = m1 + m2 + m3 + m4 + m5;
+        var average = total / 5;
+
+        var grade;
+
+        if (average >= 90) {
+            grade = "A+";
+        } 
+        else if (average >= 75) {
+            grade = "A";
+        } 
+        else if (average >= 60) {
+            grade = "B";
+        } 
+        else if (average >= 50) {
+            grade = "C";
+        } 
+        else {
+            grade = "Fail";
+        }
+
+        document.getElementById("result").innerHTML =
+            "Student Name: " + name + "<br>" +
+            "Total Marks: " + total + "<br>" +
+            "Average: " + average.toFixed(2) + "<br>" +
+            "Grade: " + grade;
+    }
+</script>
+
+</body>
+</html>
