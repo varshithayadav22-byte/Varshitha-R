@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d9c2ff; 
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #6a5acd;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #483d8b;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #numbers {
+            margin-top: 15px;
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Number Analyzer</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <br>
+    <button onclick="analyzeNumber()">Analyze</button>
+
+    <div id="result"></div>
+    <div id="numbers"></div>
+</div>
+
+<script>
+    function analyzeNumber() {
+        let num = parseInt(document.getElementById("numberInput").value);
+        let resultText = "";
+        let numbersText = "";
+
+        
+        if (isNaN(num)) {
+            resultText = "Please enter a valid number!";
+        } else {
+
+         
+            if (num % 2 === 0) {
+                resultText += "Even Number<br>";
+            } else {
+                resultText += "Odd Number<br>";
+            }
+
+            if (num > 0) {
+                resultText += "Positive Number<br>";
+            } else if (num < 0) {
+                resultText += "Negative Number<br>";
+            } else {
+                resultText += "Number is Zero<br>";
+            }
+
+            
+            if (num > 0) {
+                for (let i = 1; i <= num; i++) {
+                    numbersText += i + " ";
+                }
+            }
+        }
+
+        document.getElementById("result").innerHTML = resultText;
+        document.getElementById("numbers").innerHTML = numbersText;
+    }
+</script>
+
+</body>
+</html>
