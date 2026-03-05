@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Discount Calculator</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+    text-align:center;
+}
+
+input{
+    padding:10px;
+    width:200px;
+    margin:10px;
+}
+
+button{
+    padding:10px 15px;
+    background:#007bff;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h2>Discount Calculator</h2>
+
+<input type="number" id="amount" placeholder="Enter amount">
+<br>
+<button onclick="calculateDiscount()">Check Total</button>
+
+<h3 id="result"></h3>
+</div>
+
+<script>
+function calculateDiscount(){
+
+let amount = document.getElementById("amount").value;
+let discount = 0;
+
+if(amount >= 10000){
+    discount = 10;
+}
+else if(amount >= 9000){
+    discount = 9;
+}
+else if(amount >= 8000){
+    discount = 8;
+}
+else if(amount >= 7000){
+    discount = 7;
+}
+else if(amount >= 6000){
+    discount = 6;
+}
+else if(amount >= 5000){
+    discount = 5;
+}
+
+let discountAmount = (amount * discount) / 100;
+let total = amount - discountAmount;
+
+document.getElementById("result").innerHTML =
+"Discount: " + discount + "% <br> Final Amount: ₹" + total;
+
+}
+</script>
+
+</body>
+</html>
