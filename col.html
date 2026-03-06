@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Unit Amount Calculator</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    text-align:center;
+}
+
+.container{
+    background:white;
+    width:300px;
+    margin:auto;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+}
+
+input{
+    width:80px;
+    padding:5px;
+    margin:5px;
+}
+
+button{
+    padding:10px 15px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:darkgreen;
+}
+
+h3{
+    color:blue;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+<h2>Currency Total Calculator</h2>
+
+<div>
+500 × <input type="number" id="u500" value="0"><br>
+200 × <input type="number" id="u200" value="0"><br>
+100 × <input type="number" id="u100" value="0"><br>
+50 × <input type="number" id="u50" value="0"><br>
+20 × <input type="number" id="u20" value="0"><br>
+10 × <input type="number" id="u10" value="0"><br>
+5 × <input type="number" id="u5" value="0"><br>
+2 × <input type="number" id="u2" value="0"><br>
+1 × <input type="number" id="u1" value="0"><br><br>
+
+<button onclick="calculateTotal()">Calculate Total</button>
+
+<h3 id="result">Total: ₹0</h3>
+</div>
+</div>
+
+<script>
+function calculateTotal(){
+
+let total =
+500 * document.getElementById("u500").value +
+200 * document.getElementById("u200").value +
+100 * document.getElementById("u100").value +
+50 * document.getElementById("u50").value +
+20 * document.getElementById("u20").value +
+10 * document.getElementById("u10").value +
+5 * document.getElementById("u5").value +
+2 * document.getElementById("u2").value +
+1 * document.getElementById("u1").value;
+
+document.getElementById("result").innerHTML = "Total: ₹" + total;
+
+}
+</script>
+
+</body>
+</html>
