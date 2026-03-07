@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Bank System</title>
+
+<style>
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#4facfe,#00f2fe);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.bank-box{
+background:white;
+padding:30px;
+border-radius:10px;
+width:300px;
+text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h1{
+margin-bottom:20px;
+}
+
+input{
+width:90%;
+padding:10px;
+margin-bottom:15px;
+font-size:16px;
+}
+
+button{
+margin:5px;
+padding:10px;
+border:none;
+background:#007bff;
+color:white;
+cursor:pointer;
+border-radius:5px;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+#result{
+margin-top:20px;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="bank-box">
+
+<h1>Simple Bank</h1>
+
+<input type="number" id="amount" placeholder="Enter Amount">
+
+<br>
+
+<button onclick="deposit()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
+<button onclick="checkBalance()">Balance</button>
+<button onclick="totalDeposit()">Total Deposit</button>
+
+<p id="result"></p>
+
+</div>
+
+<script>
+
+let balance = 0;
+let totalDepositAmount = 0;
+
+function deposit(){
+
+let amount = Number(document.getElementById("amount").value);
+
+if(amount > 0){
+balance = balance + amount;
+totalDepositAmount = totalDepositAmount + amount;
+
+document.getElementById("result").innerText =
+"Deposited: " + amount + " | Balance: " + balance;
+
+}else{
+document.getElementById("result").innerText =
+"Invalid deposit amount";
+}
+
+}
+
+function withdraw(){
+
+let amount = Number(document.getElementById("amount").value);
+
+if(amount > balance){
+document.getElementById("result").innerText =
+"Insufficient Balance";
+
+}else if(amount > 0){
+
+balance = balance - amount;
+
+document.getElementById("result").innerText =
+"Withdrawn: " + amount + " | Balance: " + balance;
+
+}else{
+document.getElementById("result").innerText =
+"Invalid withdraw amount";
+}
+
+}
+
+function checkBalance(){
+document.getElementById("result").innerText =
+"Your Balance is: " + balance;
+}
+
+function totalDeposit(){
+document.getElementById("result").innerText =
+"Total Deposited: " + totalDepositAmount;
+}
+
+</script>
+
+</body>
+</html>
