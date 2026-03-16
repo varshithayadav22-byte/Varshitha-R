@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Advanced Loan Calculator</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f4f8;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:8px;
+margin:8px 0;
+}
+
+button{
+padding:10px;
+background:#007bff;
+color:white;
+border:none;
+width:100%;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+
+.result{
+margin-top:20px;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table, th, td{
+border:1px solid #ccc;
+}
+
+th, td{
+padding:8px;
+text-align:center;
+}
+
+th{
+background:#007bff;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Personal Loan EMI Calculator</h1>
+
+<label>Loan Amount (₹)</label>
+<input type="number" id="amount">
+
+<label>Interest Rate (%)</label>
+<input type="number" id="rate">
+
+<label>Loan Tenure (Years)</label>
+<input type="number" id="years">
+
+<button onclick="calculateLoan()">Calculate</button>
+
+<div class="result" id="summary"></div>
+
+<table id="schedule">
+<thead>
+<tr>
+<th>Month</th>
+<th>EMI</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+
+</div>
+
+<script>
+
+function calculateLoan(){
+
+let P = parseFloat(document.getElementById("amount").value);
+let annualRate = parseFloat(document.getElementById("rate").value);
+let years = parseFloat(document.getElementById("years").value);
+
+let R = annualRate/12/100;
+let N = years*12;
+
+let EMI = (P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+
+let balance = P;
+let totalInterest = 0;
+
+let tableBody = document.querySelector("#schedule tbody");
+tableBody.innerHTML="";
+
+for(let i=1;i<=N;i++){
+
+let interest = balance*R;
+let principal = EMI-interest;
+
+balance -= principal;
+
+totalInterest += interest;
+
+let row = `
+<tr>
+<td>${i}</td>
+<td>${EMI.toFixed(2)}</td>
+<td>${principal.toFixed(2)}</td>
+<td>${interest.toFixed(2)}</td>
+<td>${balance>0?balance.toFixed(2):0}</td>
+</tr>
+`;
+
+tableBody.innerHTML += row;
+
+}
+
+let totalPayment = EMI*N;
+
+document.getElementById("summary").innerHTML = `
+Monthly EMI: ₹${EMI.toFixed(2)} <br>
+Total Interest: ₹${totalInterest.toFixed(2)} <br>
+Total Payment: ₹${totalPayment.toFixed(2)}
+`;
+
+}
+
+</script>
+
+</body>
+</html>
