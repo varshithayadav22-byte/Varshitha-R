@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeLab Editor</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Consolas, monospace;
+}
+
+body {
+    background: #0d1117;
+    color: #c9d1d9;
+}
+
+
+header {
+    background: #161b22;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: #58a6ff;
+}
+
+header button {
+    background: #238636;
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+
+.sidebar {
+    width: 200px;
+    background: #161b22;
+    padding: 15px;
+}
+
+.sidebar h3 {
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+
+.editor {
+    flex: 1;
+    padding: 20px;
+    background: #0d1117;
+}
+
+.code-box {
+    background: #161b22;
+    padding: 20px;
+    border-radius: 8px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+
+.keyword { color: #ff7b72; }
+.tag { color: #7ee787; }
+.attr { color: #d2a8ff; }
+.string { color: #a5d6ff; }
+.comment { color: #8b949e; }
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #161b22;
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>💻 CodeLab</h1>
+    <button>Run ▶</button>
+</header>
+
+<div class="container">
+
+    <div class="sidebar">
+        <h3>Files</h3>
+        <ul>
+            <li>index.html</li>
+            <li>style.css</li>
+            <li>script.js</li>
+        </ul>
+    </div>
+
+    <div class="editor">
+        <div class="code-box">
+<pre>
+<span class="comment">&lt;!-- Sample HTML Code --&gt;</span>
+
+<span class="keyword">&lt;!DOCTYPE html&gt;</span>
+<span class="keyword">&lt;html&gt;</span>
+<span class="keyword">&lt;head&gt;</span>
+    <span class="keyword">&lt;title&gt;</span><span class="string">My Page</span><span class="keyword">&lt;/title&gt;</span>
+<span class="keyword">&lt;/head&gt;</span>
+
+<span class="keyword">&lt;body&gt;</span>
+    <span class="keyword">&lt;h1&gt;</span><span class="string">Hello World</span><span class="keyword">&lt;/h1&gt;</span>
+<span class="keyword">&lt;/body&gt;</span>
+
+<span class="keyword">&lt;/html&gt;</span>
+</pre>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    CodeLab Editor UI • HTML & CSS Only
+</footer>
+
+</body>
+</html>
