@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Clone</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #202020;
+    color: white;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+header input {
+    width: 50%;
+    padding: 8px;
+    border-radius: 2px;
+    border: none;
+}
+
+header button {
+    padding: 8px 12px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+aside {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: #181818;
+    color: white;
+    padding-top: 20px;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside li {
+    padding: 12px 20px;
+    cursor: pointer;
+}
+
+aside li:hover {
+    background: #383838;
+}
+
+
+main {
+    margin-left: 220px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.video-card {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.video-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.video-card h4 {
+    margin: 10px 0 5px;
+}
+</style>
+
+</head>
+<body>
+
+
+<header>
+    <div class="logo">YouTube</div>
+    <input type="text" placeholder="Search">
+    <button>🔍</button>
+</header>
+
+
+<aside>
+    <ul>
+        <li>🏠 Home</li>
+        <li>🔥 Trending</li>
+        <li>📺 Subscriptions</li>
+        <li>📚 Library</li>
+    </ul>
+</aside>
+
+
+<main>
+    <div class="video-card">
+        <img src="https://via.placeholder.com/300x180">
+        <h4>Video Title 1</h4>
+        <p>Channel Name</p>
+    </div>
+
+    <div class="video-card">
+        <img src="https://via.placeholder.com/300x180">
+        <h4>Video Title 2</h4>
+        <p>Channel Name</p>
+    </div>
+
+    <div class="video-card">
+        <img src="https://via.placeholder.com/300x180">
+        <h4>Video Title 3</h4>
+        <p>Channel Name</p>
+    </div>
+
+    <div class="video-card">
+        <img src="https://via.placeholder.com/300x180">
+        <h4>Video Title 4</h4>
+        <p>Channel Name</p>
+    </div>
+
+    <div class="video-card">
+        <img src="https://via.placeholder.com/300x180">
+        <h4>Video Title 5</h4>
+        <p>Channel Name</p>
+    </div>
+
+    <div class="video-card">
+        <img src="https://via.placeholder.com/300x180">
+        <h4>Video Title 6</h4>
+        <p>Channel Name</p>
+    </div>
+</main>
+
+</body>
+</html>
