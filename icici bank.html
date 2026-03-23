@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Personal Loan EMI Calculator</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+
+body { font-family: Arial, sans-serif; background:#f5f7fa; margin:0; }
+.header { background:#f36f21; color:white; padding:20px; text-align:center; font-size:24px; font-weight:bold; }
+
+
+.container { max-width:1000px; margin:30px auto; display:flex; gap:30px; background:#fff; padding:30px; border-radius:10px; flex-wrap:wrap; }
+.left,.right { flex:1; min-width:300px; }
+
+h2 { margin-bottom:20px; }
+
+
+.slider-box { margin-bottom:25px; }
+.slider-box label { display:block; font-weight:bold; margin-bottom:8px; }
+.slider-box input[type=range] { width:100%; }
+.value { float:right; color:#f36f21; font-weight:bold; }
+
+
+.result { background:#fff5f0; padding:20px; border-radius:10px; margin-bottom:20px; }
+.result p { font-size:18px; margin:10px 0; }
+.result span { float:right; font-weight:bold; }
+
+
+canvas { margin-top:20px; max-width:100%; }
+
+@media (max-width:700px){ .container{ flex-direction:column; } }
+</style>
+</head>
+<body>
+
+<div class="header">Personal Loan EMI Calculator</div>
+
+<div class="container">
+  <div class="left">
+    <h2>Calculate Your EMI</h2>
+    <div class="slider-box">
+      <label>Loan Amount <span class="value" id="loanVal">₹500000</span></label>
+      <input type="range" id="loan" min="50000" max="5000000" step="10000" value="500000">
+    </div>
+    <div class="slider-box">
+      <label>Interest Rate <span class="value" id="rateVal">10%</span></label>
+      <input type="range" id="rate" min="5" max="20" step="0.1" value="10">
+    </div>
+    <div class="slider-box">
+      <label>Tenure <span class="value" id="tenureVal">36 months</span></label>
+      <input type="range" id="tenure" min="12" max="72" value="36">
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="result">
+      <p>Monthly EMI <span id="emi">₹0</span></p>
+      <p>Principal Amount <span id="principal">₹0</span></p>
+      <p>Total Interest <span id="interest">₹0</span></p>
+      <p>Total Payment <span id="total">₹0</span></p>
+    </div>
+    <canvas id="chart"></canvas>
+  </div>
+</div>
+
+<script>
+let chart;
+function calculateEMI(){
+  let P = +document.getElementById("loan").value;
+  let annualRate = +document.getElementById("rate").value;
+  let N = +document.getElementById("tenure").value;
+  let R = annualRate/12/100;
+  let EMI = (P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+  let total = EMI*N;
+  let interest = total-P;
+
+  document.getElementById("emi").innerText = "₹"+Math.round(EMI);
+  document.getElementById("principal").innerText = "₹"+P;
+  document.getElementById("interest").innerText = "₹"+Math.round(interest);
+  document.getElementById("total").innerText = "₹"+Math.round(total);
+
+  document.getElementById("loanVal").innerText = "₹"+P;
+  document.getElementById("rateVal").innerText = annualRate+"%";
+  document.getElementById("tenureVal").innerText = N+" months";
+
+  updateChart(P,interest);
+}
+
+function updateChart(principal,interest){
+  if(chart) chart.destroy();
+  let ctx = document.getElementById("chart").getContext("2d");
+  chart = new Chart(ctx,{
+    type:"doughnut",
+    data:{
+      labels:["Principal","Interest"],
+      datasets:[{
+        data:[principal,interest],
+        backgroundColor:["#f36f21","#ffd2b3"]
+      }]
+    }
+  });
+}
+
+document.querySelectorAll("input").forEach(input=>input.addEventListener("input",calculateEMI));
+calculateEMI();
+</script>
+
+</body>
+</html>
