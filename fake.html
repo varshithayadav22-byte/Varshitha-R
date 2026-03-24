@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MegaMall</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f1f3f6;
+}
+
+
+header {
+  background: #2874f0;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header input {
+  width: 40%;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  padding: 15px;
+}
+
+.categories div {
+  text-align: center;
+  cursor: pointer;
+}
+
+.categories img {
+  width: 50px;
+}
+
+
+.banner {
+  margin: 20px;
+  background: url('https://via.placeholder.com/1200x300') no-repeat center/cover;
+  height: 250px;
+  border-radius: 10px;
+}
+
+
+.section {
+  margin: 20px;
+}
+
+.section h2 {
+  margin-bottom: 10px;
+}
+
+.products {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+}
+
+.product {
+  background: white;
+  padding: 10px;
+  min-width: 180px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.product:hover {
+  transform: scale(1.05);
+}
+
+.product img {
+  width: 100%;
+}
+
+.product button {
+  background: #ff9f00;
+  border: none;
+  padding: 8px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+footer {
+  background: #172337;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>MegaMall</h1>
+  <input type="text" placeholder="Search for products...">
+</header>
+
+
+<div class="categories">
+  <div><img src="https://via.placeholder.com/50"><p>Mobiles</p></div>
+  <div><img src="https://via.placeholder.com/50"><p>Fashion</p></div>
+  <div><img src="https://via.placeholder.com/50"><p>Electronics</p></div>
+  <div><img src="https://via.placeholder.com/50"><p>Home</p></div>
+  <div><img src="https://via.placeholder.com/50"><p>Appliances</p></div>
+</div>
+
+
+<div class="banner"></div>
+
+
+<div class="section">
+  <h2>🔥 Deals of the Day</h2>
+  <div class="products">
+    
+    <div class="product">
+      <img src="https://via.placeholder.com/150">
+      <p>Smartphone</p>
+      <p>$199</p>
+      <button>Buy Now</button>
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/150">
+      <p>Headphones</p>
+      <p>$49</p>
+      <button>Buy Now</button>
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/150">
+      <p>Shoes</p>
+      <p>$79</p>
+      <button>Buy Now</button>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>🛍️ Trending Products</h2>
+  <div class="products">
+
+    <div class="product">
+      <img src="https://via.placeholder.com/150">
+      <p>Laptop</p>
+      <p>$799</p>
+      <button>Buy Now</button>
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/150">
+      <p>Watch</p>
+      <p>$99</p>
+      <button>Buy Now</button>
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/150">
+      <p>Backpack</p>
+      <p>$39</p>
+      <button>Buy Now</button>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 MegaMall | Fake Shopping Experience</p>
+</footer>
+
+</body>
+</html>
