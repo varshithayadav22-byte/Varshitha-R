@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Go Green Portfolio</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0fff4;
+  color: #2e7d32;
+}
+
+header {
+  background: #2e7d32;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.section {
+  padding: 40px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  background: #43a047;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #1b5e20;
+}
+
+.card {
+  background: white;
+  margin: 15px;
+  padding: 20px;
+  display: inline-block;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+form input, form textarea {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+footer {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1>Go Green 🌱</h1>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section id="home" class="section">
+  <h2>Welcome</h2>
+  <p>Together, we can make the Earth greener and cleaner.</p>
+  <button onclick="showMessage()">Join the Movement</button>
+</section>
+
+<section id="about" class="section">
+  <h2>About</h2>
+  <p>This portfolio promotes eco-friendly practices like reducing waste, planting trees, and saving energy.</p>
+</section>
+
+<section id="projects" class="section">
+  <h2>Projects</h2>
+  
+  <div class="card">
+    <h3>Tree Plantation Drive</h3>
+    <p>Organized community tree planting events.</p>
+  </div>
+
+  <div class="card">
+    <h3>Plastic Reduction Campaign</h3>
+    <p>Promoting reusable alternatives.</p>
+  </div>
+
+  <div class="card">
+    <h3>Clean Energy Awareness</h3>
+    <p>Educating people about solar and renewable energy.</p>
+  </div>
+
+</section>
+
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <form onsubmit="return submitForm()">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Go Green Initiative</p>
+</footer>
+
+<script>
+function showMessage() {
+  alert("Thank you for supporting Go Green 🌍");
+}
+
+function submitForm() {
+  alert("Message sent successfully!");
+  return false;
+}
+</script>
+
+</body>
+</html>
