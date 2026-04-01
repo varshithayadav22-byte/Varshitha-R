@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Dashboard</title>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+  background: #eef2f7;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+button {
+  padding: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+input {
+  padding: 10px;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: white;
+  margin: 5px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.product {
+  background: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.loader {
+  display: none;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+
+<h2>Random User Generator</h2>
+<button onclick="generateUser()">Generate User</button>
+<div class="loader" id="userLoader">Loading...</div>
+<div id="userContainer"></div>
+
+
+<h2>Weather Search</h2>
+<input id="city" placeholder="Enter city">
+<button onclick="getWeather()">Search</button>
+<div class="loader" id="weatherLoader">Loading...</div>
+<div id="weatherContainer"></div>
+
+
+<h2>To-Do List</h2>
+<input id="taskInput" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+<ul id="taskList"></ul>
+
+
+<h2>Product Search</h2>
+<input id="search" placeholder="Search..." onkeyup="filterProducts()">
+<div id="products" class="products"></div>
+
+</div>
+
+<script>
+
+
+async function generateUser() {
+  document.getElementById("userLoader").style.display = "block";
+
+  const res = await fetch("https://randomuser.me/api/");
+  const data = await res.json();
+  const u = data.results[0];
+
+  document.getElementById("userLoader").style.display = "none";
+
+  document.getElementById("userContainer").innerHTML = `
+    <div class="card">
+      <img src="${u.picture.medium}" style="border-radius:50%">
+      <h3>${u.name.first} ${u.name.last}</h3>
+      <p>${u.email}</p>
+      <p>${u.location.country}</p>
+    </div>
+  `;
+}
+
+
+async function getWeather() {
+  const city = document.getElementById("city").value;
+
+  document.getElementById("weatherLoader").style.display = "block";
+
+  const geo = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`);
+  const geoData = await geo.json();
+
+  if (!geoData.results) {
+    alert("City not found");
+    return;
+  }
+
+  const { latitude, longitude } = geoData.results[0];
+
+  const res = await fetch(
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
+  );
+
+  const data = await res.json();
+  const w = data.current_weather;
+
+  document.getElementById("weatherLoader").style.display = "none";
+
+  document.getElementById("weatherContainer").innerHTML = `
+    <div class="card">
+      <p><b>Temp:</b> ${w.temperature}°C</p>
+      <p><b>Wind:</b> ${w.windspeed} km/h</p>
+      <p><b>Code:</b> ${w.weathercode}</p>
+    </div>
+  `;
+}
+
+
+function addTask() {
+  const input = document.getElementById("taskInput");
+
+  if (!input.value) return;
+
+  const li = document.createElement("li");
+
+  li.innerHTML = `
+    <span onclick="toggle(this)">${input.value}</span>
+    <button onclick="removeTask(this)">X</button>
+  `;
+
+  document.getElementById("taskList").appendChild(li);
+  input.value = "";
+}
+
+function removeTask(btn) {
+  btn.parentElement.remove();
+}
+
+function toggle(el) {
+  el.classList.toggle("completed");
+}
+
+
+const items = [
+  "Laptop","Phone","Headphones","Keyboard",
+  "Mouse","Camera","Smartwatch","Tablet",
+  "Speaker","Monitor"
+];
+
+function showProducts(list) {
+  const container = document.getElementById("products");
+  container.innerHTML = "";
+
+  list.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "product";
+    div.textContent = p;
+    container.appendChild(div);
+  });
+}
+
+function filterProducts() {
+  const val = document.getElementById("search").value.toLowerCase();
+  const filtered = items.filter(i => i.toLowerCase().includes(val));
+  showProducts(filtered);
+}
+
+showProducts(items);
+
+</script>
+</body>
+</html>
