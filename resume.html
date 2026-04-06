@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Resume Builder</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #333;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Glass Effect */
+.form-section, .preview-section {
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.15);
+  border-radius: 15px;
+  padding: 20px;
+  width: 50%;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+/* Inputs */
+input, textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #ff7eb3, #ff758c);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* Resume Preview */
+.preview-section {
+  background: white;
+  color: black;
+}
+
+.preview-section h1 {
+  border-bottom: 2px solid #ddd;
+}
+
+/* Skill Tags */
+.skill-tag {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin: 5px;
+  font-size: 12px;
+}
+
+/* Image */
+img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* Dark Mode */
+.dark {
+  background: #121212;
+  color: white;
+}
+
+@media(max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="form-section">
+  <h2>Resume Builder</h2>
+
+  <input type="file" id="photo">
+
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="text" id="email" placeholder="Email">
+  <input type="text" id="phone" placeholder="Phone">
+
+  <textarea id="skills" placeholder="Skills (comma separated)"></textarea>
+  <textarea id="education" placeholder="Education"></textarea>
+  <textarea id="experience" placeholder="Experience"></textarea>
+
+  <button onclick="toggleDark()">🌙 Toggle Mode</button>
+  <button onclick="downloadPDF()">Download</button>
+</div>
+
+<div class="preview-section" id="resume">
+  <img id="r-photo" src="">
+  <h1 id="r-name">Your Name</h1>
+  <p id="r-contact"></p>
+
+  <h3>Skills</h3>
+  <div id="r-skills"></div>
+
+  <h3>Education</h3>
+  <p id="r-education"></p>
+
+  <h3>Experience</h3>
+  <p id="r-experience"></p>
+</div>
+
+</div>
+
+<script>
+// Live update
+document.querySelectorAll("input, textarea").forEach(el => {
+  el.addEventListener("input", generateResume);
+});
+
+function generateResume() {
+  document.getElementById("r-name").innerText =
+    document.getElementById("name").value;
+
+  document.getElementById("r-contact").innerText =
+    document.getElementById("email").value + " | " +
+    document.getElementById("phone").value;
+
+  document.getElementById("r-education").innerText =
+    document.getElementById("education").value;
+
+  document.getElementById("r-experience").innerText =
+    document.getElementById("experience").value;
+
+  // Skills as tags
+  let skills = document.getElementById("skills").value.split(",");
+  let skillHTML = "";
+  skills.forEach(skill => {
+    if(skill.trim() !== "")
+      skillHTML += `<span class="skill-tag">${skill}</span>`;
+  });
+  document.getElementById("r-skills").innerHTML = skillHTML;
+}
+
+// Image Upload
+document.getElementById("photo").addEventListener("change", function() {
+  const file = this.files[0];
+  const reader = new FileReader();
+  reader.onload = function() {
+    document.getElementById("r-photo").src = reader.result;
+  }
+  reader.readAsDataURL(file);
+});
+
+// Dark mode
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
+// Print
+function downloadPDF() {
+  window.print();
+}
+</script>
+
+</body>
+</html>
