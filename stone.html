@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two-Player Stone Paper Scissors</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .game-container {
+        text-align: center;
+        background: #fff;
+        padding: 30px 50px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    h1 {
+        margin-bottom: 20px;
+    }
+    .choices {
+        margin: 15px 0;
+    }
+    .choices button {
+        font-size: 18px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .choices button:hover {
+        transform: scale(1.1);
+        background-color: #4facfe;
+        color: white;
+    }
+    .result {
+        margin-top: 20px;
+    }
+    .reset-btn {
+        margin-top: 20px;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: #43e97b;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .reset-btn:hover {
+        background-color: #38f9d7;
+    }
+</style>
+</head>
+<body>
+<div class="game-container">
+    <h1>Two-Player Stone Paper Scissors</h1>
+
+    <div class="choices">
+        <h2>Player 1</h2>
+        <button onclick="playerChoice(1,'stone')">🪨 Stone</button>
+        <button onclick="playerChoice(1,'paper')">📄 Paper</button>
+        <button onclick="playerChoice(1,'scissors')">✂️ Scissors</button>
+    </div>
+
+    <div class="choices">
+        <h2>Player 2</h2>
+        <button onclick="playerChoice(2,'stone')">🪨 Stone</button>
+        <button onclick="playerChoice(2,'paper')">📄 Paper</button>
+        <button onclick="playerChoice(2,'scissors')">✂️ Scissors</button>
+    </div>
+
+    <div class="result">
+        <p id="player1-choice">Player 1 Choice: </p>
+        <p id="player2-choice">Player 2 Choice: </p>
+        <h2 id="winner">Winner: </h2>
+    </div>
+    <button onclick="resetGame()" class="reset-btn">Reset Game</button>
+</div>
+
+<script>
+let player1 = '';
+let player2 = '';
+
+function playerChoice(player, choice) {
+    if(player === 1) {
+        player1 = choice;
+        document.getElementById('player1-choice').textContent = `Player 1 Choice: ${choice}`;
+    } else {
+        player2 = choice;
+        document.getElementById('player2-choice').textContent = `Player 2 Choice: ${choice}`;
+    }
+
+    if(player1 && player2) {
+        decideWinner();
+    }
+}
+
+function decideWinner() {
+    let winnerText = '';
+
+    if(player1 === player2) {
+        winnerText = "It's a Tie!";
+    } else if (
+        (player1 === 'stone' && player2 === 'scissors') ||
+        (player1 === 'paper' && player2 === 'stone') ||
+        (player1 === 'scissors' && player2 === 'paper')
+    ) {
+        winnerText = "Player 1 Wins! 🎉";
+    } else {
+        winnerText = "Player 2 Wins! 🎉";
+    }
+
+    document.getElementById('winner').textContent = `Winner: ${winnerText}`;
+}
+
+function resetGame() {
+    player1 = '';
+    player2 = '';
+    document.getElementById('player1-choice').textContent = "Player 1 Choice: ";
+    document.getElementById('player2-choice').textContent = "Player 2 Choice: ";
+    document.getElementById('winner').textContent = "Winner: ";
+}
+</script>
+</body>
+</html>
