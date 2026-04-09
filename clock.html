@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Digital Clock</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #0f0f0f;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .clock {
+      font-size: 70px;
+      padding: 30px 60px;
+      border-radius: 20px;
+      background: #111;
+      color: #0ff;
+      text-shadow:
+        0 0 5px #0ff,
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+      box-shadow:
+        0 0 10px #0ff,
+        0 0 30px rgba(0,255,255,0.5),
+        inset 0 0 20px rgba(0,255,255,0.3);
+    }
+
+    #ampm {
+      font-size: 35px;
+      margin-left: 10px;
+      vertical-align: super;
+      color: #ff00ff;
+      text-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff;
+    }
+
+    /* Optional subtle animation glow pulse */
+    .clock {
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 5px #0ff,
+          0 0 10px #0ff,
+          0 0 20px #0ff,
+          0 0 40px #0ff;
+      }
+      to {
+        text-shadow:
+          0 0 10px #0ff,
+          0 0 20px #0ff,
+          0 0 30px #0ff,
+          0 0 60px #0ff;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="clock">
+    <span id="h">00</span> :
+    <span id="m">00</span> :
+    <span id="s">00</span>
+    <span id="ampm">AM</span>
+  </div>
+
+  <script>
+    let h = document.getElementById("h");
+    let m = document.getElementById("m");
+    let s = document.getElementById("s");
+    let ampm = document.getElementById("ampm");
+
+    function updateClock() {
+      let date = new Date();
+
+      let hrs = date.getHours();
+      let min = date.getMinutes();
+      let sec = date.getSeconds();
+      let period = "AM";
+
+      if (hrs >= 12) {
+        period = "PM";
+        if (hrs > 12) hrs -= 12;
+      }
+
+      if (hrs === 0) hrs = 12;
+
+      h.innerHTML = hrs < 10 ? "0" + hrs : hrs;
+      m.innerHTML = min < 10 ? "0" + min : min;
+      s.innerHTML = sec < 10 ? "0" + sec : sec;
+      ampm.innerHTML = period;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // run immediately
+  </script>
+
+</body>
+</html>
