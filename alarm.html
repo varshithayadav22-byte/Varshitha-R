@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alarm Clock</title>
+
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        background: #f0f8ff;
+        margin-top: 100px;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    input, button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    #status {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .ring {
+        color: white;
+        background: red;
+        padding: 10px;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0% {opacity: 1;}
+        50% {opacity: 0.3;}
+        100% {opacity: 1;}
+    }
+</style>
+</head>
+
+<body>
+
+<h1>⏰ Alarm Clock</h1>
+
+<label>Set Alarm Time:</label><br>
+<input type="time" id="alarmTime">
+
+<br>
+<button onclick="setAlarm()">Set Alarm</button>
+<button onclick="stopAlarm()">Stop Alarm</button>
+
+<div id="status">Status: Not Set</div>
+
+<!-- Alarm Sound -->
+<audio id="alarmSound" loop>
+    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let alarmTimeValue = "";
+
+function setAlarm() {
+    alarmTimeValue = document.getElementById("alarmTime").value;
+    let status = document.getElementById("status");
+
+    if (alarmTimeValue === "") {
+        alert("Please select time");
+        return;
+    }
+
+    status.innerHTML = "⏰ Alarm set for " + alarmTimeValue;
+}
+
+// Check every second
+setInterval(() => {
+    let now = new Date();
+    let currentTime = now.toTimeString().slice(0,5);
+
+    if (currentTime === alarmTimeValue) {
+        document.getElementById("alarmSound").play();
+        let status = document.getElementById("status");
+        status.innerHTML = "🚨 Wake Up!";
+        status.classList.add("ring");
+    }
+}, 1000);
+
+function stopAlarm() {
+    document.getElementById("alarmSound").pause();
+    document.getElementById("alarmSound").currentTime = 0;
+
+    let status = document.getElementById("status");
+    status.innerHTML = "Alarm Stopped";
+    status.classList.remove("ring");
+}
+</script>
+
+</body>
+</html>
