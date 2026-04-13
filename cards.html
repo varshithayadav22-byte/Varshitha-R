@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quotes Cards</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #aa7dd7);
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+.search-box {
+    text-align: center;
+    margin: 20px 0;
+}
+
+input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.quote-id {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 12px;
+}
+
+.quote {
+    margin: 20px 0;
+}
+
+.author {
+    text-align: right;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>✨ Quotes Cards</h1>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Enter author name...">
+    <button onclick="searchQuotes()">Submit</button>
+    
+</div>
+
+<div class="container" id="container"></div>
+
+<script>
+const data = {
+  quotes: [
+    {id:1, quote:"Your heart is the size of an ocean.", author:"Rumi"},
+    {id:2, quote:"The Bay of Bengal is hit frequently by cyclones.", author:"Abdul Kalam"},
+    {id:3, quote:"Thinking is the capital, Enterprise is the way.", author:"Abdul Kalam"},
+    {id:4, quote:"If You Can't Make It Good, At Least Make It Look Good.", author:"Bill Gates"},
+    {id:5, quote:"Heart be brave.", author:"Rumi"},
+    {id:6, quote:"It is bad for a young man to sin.", author:"Abu Bakr"},
+    {id:7, quote:"Leave elegance to the tailor.", author:"Albert Einstein"},
+    {id:8, quote:"O man you are busy working.", author:"Abu Bakr"},
+    {id:9, quote:"Children struggle to be unique.", author:"Abdul Kalam"},
+    {id:10, quote:"Capitalists act harmoniously.", author:"Abraham Lincoln"},
+    {id:11, quote:"I Don't Believe In Failure.", author:"Oprah Winfrey"},
+    {id:12, quote:"Do not get elated at victory.", author:"Abu Bakr"},
+    {id:13, quote:"Wear gratitude like a cloak.", author:"Rumi"},
+    {id:14, quote:"If you dream of beating me.", author:"Muhammad Ali"},
+    {id:15, quote:"I Will Praise Any Man.", author:"William Shakespeare"}
+  ]
+};
+
+const container = document.getElementById("container");
+
+function displayQuotes(quotes) {
+    container.innerHTML = "";
+
+    quotes.forEach(q => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        card.innerHTML = `
+            <div class="quote-id">#${q.id}</div>
+            <div class="quote">"${q.quote}"</div>
+            <div class="author">- ${q.author}</div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+
+function searchQuotes() {
+    const input = document.getElementById("searchInput").value.toLowerCase();
+
+    const filtered = data.quotes.filter(q =>
+        q.author.toLowerCase().includes(input)
+    );
+
+    displayQuotes(filtered);
+}
+
+
+function showAll() {
+    displayQuotes(data.quotes);
+}
+
+
+displayQuotes(data.quotes);
+</script>
+
+</body>
+</html>
