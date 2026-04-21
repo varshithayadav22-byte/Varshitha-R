@@ -1,68 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Varshitha </title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:#f4f7fb;
+}
+
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:#111827;
+    color:white;
+    padding:15px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+}
+
+.navbar ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.container{
+    display:flex;
+    width:300vw;
+    height:100vh;
+    transition:transform 0.7s ease;
+}
+
+.page{
+    width:100vw;
+    height:100vh;
+    padding:100px 50px;
+    flex-shrink:0;
+}
+
+.home{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.home-content{
+    width:50%;
+}
+
+.home-content h1{
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.home-content h2{
+    margin-bottom:20px;
+}
+
+.icons i{
+    font-size:30px;
+    margin-right:20px;
+    margin-top:20px;
+}
+
+button{
+    padding:12px 24px;
+    border:none;
+    background:navy;
+    color:white;
+    border-radius:8px;
+    margin-top:20px;
+    margin-right:10px;
+    cursor:pointer;
+}
+
+.image-container{
+    position:relative;
+    width:400px;
+    height:350px;
+}
+
+.image-container img{
+    width:180px;
+    height:220px;
+    border-radius:20px;
+    position:absolute;
+    object-fit:cover;
+}
+
+.img1{ left:0px; top:0px; }
+.img2{ left:100px; top:60px; }
+.img3{ left:200px; top:120px; }
+
+.about{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.about-card{
+    display:flex;
+    align-items:center;
+    gap:50px;
+}
+
+.profile-photo{
+    width:250px;
+    height:300px;
+    border-radius:20px;
+    object-fit:cover;
+}
+
+.bio{
+    font-size:20px;
+    line-height:2;
+}
+
+.contact{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding-top:120px;
+}
+
+#contactForm{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+}
+
+input, textarea{
+    width:400px;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+textarea{
+    height:120px;
+    resize:none;
+}
+</style>
 </head>
 <body>
 
-   
-    <header>
-        <h1>My Portfolio</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<nav class="navbar">
+    <div class="logo">Varshitha</div>
+    <ul>
+        <li><a onclick="goToPage(0)">Home</a></li>
+        <li><a onclick="goToPage(1)">About</a></li>
+        <li><a onclick="goToPage(2)">Contact</a></li>
+    </ul>
+</nav>
 
-   
-    <section class="hero">
-        <h2>Hello, I'm <span>Your Name</span></h2>
-        <p>A Web Developer</p>
-        <button>Hire Me</button>
-    </section>
+<div class="container">
 
-  
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <p>
-            I am a passionate web developer who loves building clean and modern websites.
-        </p>
-    </section>
+    <section class="page home">
+        <div class="home-content">
+            <h1>Hello, I am Varshitha</h1>
+            <h2>Full Stack Developer</h2>
+            <p>
+                Passionate about creating beautiful and modern websites.
+                I love coding, designing, and building creative projects.
+            </p>
 
-  
-    <section id="projects" class="projects">
-        <h2>My Projects</h2>
+            <div class="icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
 
-        <div class="project-card">
-            <h3>Project 1</h3>
-            <p>Short description of your project.</p>
+            <div class="buttons">
+                <button onclick="goToPage(2)">Contact</button>
+                <button onclick="submitMessage()">Submit</button>
+            </div>
         </div>
 
-        <div class="project-card">
-            <h3>Project 2</h3>
-            <p>Short description of your project.</p>
+        <div class="image-container">
+            <img src="https://media.istockphoto.com/id/1550071750/photo/green-tea-tree-leaves-camellia-sinensis-in-organic-farm-sunlight-fresh-young-tender-bud.jpg?s=612x612&w=0&k=20&c=RC_xD5DY5qPH_hpqeOY1g1pM6bJgGJSssWYjVIvvoLw=" class="img1">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_VzqxKXGFIKdaOcCeos2YmkvXU5A-Za_B8A&s" class="img2">
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20240720/pngtree-image-of-a-lion-roaring-fiercely-surrounded-by-fiery-flames-image_16017525.jpg" class="img3">
         </div>
-
-        <div class="project-card">
-            <h3>Project 3</h3>
-            <p>Short description of your project.</p>
-        </div>
-
     </section>
 
-    <section id="contact" class="contact">
+    <section class="page about">
+        <div class="about-card">
+            <img src="https://png.pngtree.com/thumb_back/fh260/background/20240720/pngtree-image-of-a-lion-roaring-fiercely-surrounded-by-fiery-flames-image_16017525.jpg" class="profile-photo">
+
+            <div class="bio">
+                <h2>About Me</h2>
+                <p><strong>Name:</strong> Varshitha</p>
+                <p><strong>Education:</strong> B.E Student</p>
+                <p><strong>Skills:</strong> HTML, CSS, JavaScript</p>
+                <p><strong>Hobbies:</strong> Designing, Coding, Music</p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button onclick="goToPage(0)">Home</button>
+            <button onclick="goToPage(2)">Contact</button>
+        </div>
+    </section>
+
+    <section class="page contact">
         <h2>Contact Me</h2>
-        <p>Email: your@email.com</p>
+
+        <form id="contactForm">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="tel" id="phone" placeholder="Contact Number" maxlength="10" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+
+            <div class="buttons">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="goToPage(0)">Home</button>
+            </div>
+        </form>
     </section>
 
-  
-    <footer>
-        <p>© 2026 Your Name</p>
-    </footer>
+</div>
+
+<script>
+let currentPage = 0;
+
+function goToPage(page){
+    const container = document.querySelector(".container");
+    container.style.transform = `translateX(-${page * 100}vw)`;
+    currentPage = page;
+}
+
+function submitMessage(){
+    alert("Welcome to Varshitha's Portfolio!");
+}
+
+document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let phone = document.getElementById("phone").value;
+
+    if(!/^\\d{10}$/.test(phone)){
+        alert("Phone number must be exactly 10 digits");
+        return;
+    }
+
+    alert("Thank you! Submitted successfully!");
+});
+</script>
 
 </body>
 </html>
